@@ -6,41 +6,31 @@ let output = document.querySelector('#output');
 
 function getText(){
     fetch('test.txt')
-        .then(function(res){
-            return res.text();            
-        })
-        .then(function(data){
+        .then(res => res.text())
+        .then(data => {
             console.log(data);
             output.innerHTML = data;
         })
-        .catch(function(err){
-            output.innerHTML = err;
-        })
+        .catch(err => output.innerHTML = err);
 }
 
 function getJSON(){
     fetch('test.json')
-        .then(function(res){
-            return res.json();
-        })
-        .then(function(data){
+        .then(res => res.json())
+        .then(data => {
             let out = '';
             data.forEach(function(post){
                 out += `<li>${post.body}</li>`
             })
             output.innerHTML = out;
         })
-        .catch(function(err){
-            output.innerHTML = err;           
-        })
+        .catch(err => output.innerHTML = err);
 }
 
 function getAPI(){
     fetch('https://api.github.com/users')
-        .then(function(res){
-            return res.json();
-        })
-        .then(function(data){
+        .then(res => res.json())
+        .then(data => {
             let out = '';
             let i = 1;
             data.forEach(function(user){
@@ -48,7 +38,5 @@ function getAPI(){
             })
             output.innerHTML = out;
         })
-        .catch(function(err){
-            output.innerHTML = err;
-        })
+        .catch(err => output.innerHTML = err)
 }
